@@ -2,20 +2,20 @@ import { About, Blog, Gallery, Home, Newsletter, Person, Social, Work } from "@/
 import { Line, Logo, Row, Text } from "@once-ui-system/core";
 
 const person: Person = {
-  firstName: "Selene",
-  lastName: "Yu",
-  name: `Selene Yu`,
-  role: "Design Engineer",
+  firstName: "Victor",
+  lastName: "Ozana",
+  name: `Victor`,
+  role: "Desenvolvedor de Software",
   avatar: "/images/avatar.jpg",
-  email: "example@gmail.com",
-  location: "Asia/Jakarta", // Expecting the IANA time zone identifier, e.g., 'Europe/Vienna'
-  languages: ["English", "Bahasa"], // optional: Leave the array empty if you don't want to display languages
+  email: "victor.ozprofissional@gmail.com",
+  location: "America/Sao_Paulo", // Expecting the IANA time zone identifier, e.g., 'Europe/Vienna'
+  languages: ["Português", "Inglês"], // optional: Leave the array empty if you don't want to display languages
 };
 
 const newsletter: Newsletter = {
   display: true,
-  title: <>Subscribe to {person.firstName}'s Newsletter</>,
-  description: <>My weekly newsletter about creativity and engineering</>,
+  title: <>Fale comigo! {person.firstName}'s Newsletter</>,
+  description: <>Deseja falar comigo? Deixe o seu email aqui e entrarei em contato!</>,
 };
 
 const social: Social = [
@@ -24,17 +24,12 @@ const social: Social = [
   {
     name: "GitHub",
     icon: "github",
-    link: "https://github.com/once-ui-system",
+    link: "https://github.com/Victorozana",
   },
   {
     name: "LinkedIn",
     icon: "linkedin",
-    link: "https://www.linkedin.com/company/once-ui/",
-  },
-  {
-    name: "Threads",
-    icon: "threads",
-    link: "https://www.threads.com/@once_ui",
+    link: "https://www.linkedin.com/in/victorozana/",
   },
   {
     name: "Email",
@@ -49,15 +44,15 @@ const home: Home = {
   label: "Home",
   title: `${person.name}'s Portfolio`,
   description: `Portfolio website showcasing my work as a ${person.role}`,
-  headline: <>Building bridges between design and code</>,
+  headline: <>Codificando soluções, e construindo o futuro.</>,
   featured: {
     display: true,
     title: (
       <Row gap="12" vertical="center">
-        <strong className="ml-4">Once UI</strong>{" "}
+        <strong className="ml-4">Projetos</strong>{" "}
         <Line background="brand-alpha-strong" vert height="20" />
         <Text marginRight="4" onBackground="brand-medium">
-          Featured work
+          Clique aqui!
         </Text>
       </Row>
     ),
@@ -65,14 +60,7 @@ const home: Home = {
   },
   subline: (
     <>
-      I'm Selene, a design engineer at{" "}
-      <Logo
-        dark
-        icon="/trademarks/wordmark-dark.svg"
-        style={{ display: "inline-flex", top: "0.25em", marginLeft: "-0.25em" }}
-      />
-      , where I craft intuitive
-      <br /> user experiences. After hours, I build my own projects.
+      Olá, sou Victor Ozana. Meu trabalho é transformar ideias em código e construir aplicações robustas e fáceis de usar. Explore alguns dos meus projetos!
     </>
   ),
 };
@@ -80,7 +68,7 @@ const home: Home = {
 const about: About = {
   path: "/about",
   label: "About",
-  title: `About – ${person.name}`,
+  title: `Sobre – ${person.name}`,
   description: `Meet ${person.name}, ${person.role} from ${person.location}`,
   tableOfContent: {
     display: true,
@@ -98,131 +86,72 @@ const about: About = {
     title: "Introduction",
     description: (
       <>
-        Selene is a Jakarta-based design engineer with a passion for transforming complex challenges
-        into simple, elegant design solutions. Her work spans digital interfaces, interactive
-        experiences, and the convergence of design and technology.
+        Victor é um desenvolvedor de software 
+        colaborativo e proativo, focado em criar 
+        soluções com arquitetura sólida e desempenho 
+        otimizado que garantem uma experiência de usuário 
+        excepcional.
       </>
     ),
   },
   work: {
     display: true, // set to false to hide this section
-    title: "Work Experience",
+    title: "Projetos práticos",
     experiences: [
       {
-        company: "FLY",
-        timeframe: "2022 - Present",
-        role: "Senior Design Engineer",
+        company: "Iniciação Científica",
+        timeframe: "2025-presente",
+        role: "Python, Scikit-learn, TensorFlow, Keras",
         achievements: [
           <>
-            Redesigned the UI/UX for the FLY platform, resulting in a 20% increase in user
-            engagement and 30% faster load times.
-          </>,
-          <>
-            Spearheaded the integration of AI tools into design workflows, enabling designers to
-            iterate 50% faster.
+           Feira Digital: Processamento de Linguagem Natural para Alavancar a Agricultura Familiar. É uma API que integra o Processamento de Linguagem Natural para entender a linguagem natural de agricultores familiar.
           </>,
         ],
-        images: [
-          // optional: leave the array empty if you don't want to display images
-          {
+        images: [],
+      },
+      {
+        company: "Memory Game",
+        timeframe: "2025",
+        role: "Java, JavaFX, CRUD, Git, Arquitetura MVC",
+        achievements: [
+          <>
+             Este projeto foi feito para as aulas na faculdade, porém ele inclui interface gráfica e é totalmente funcional, ou seja jogavél. Ele é capaz de incluir nomes e salva-lós, além de tratar problemas de concorrência.
+          </>,
+        ],
+        images: [{
             src: "/images/projects/project-01/cover-01.jpg",
             alt: "Once UI Project",
             width: 16,
             height: 9,
-          },
-        ],
-      },
-      {
-        company: "Creativ3",
-        timeframe: "2018 - 2022",
-        role: "Lead Designer",
-        achievements: [
-          <>
-            Developed a design system that unified the brand across multiple platforms, improving
-            design consistency by 40%.
-          </>,
-          <>
-            Led a cross-functional team to launch a new product line, contributing to a 15% increase
-            in overall company revenue.
-          </>,
-        ],
-        images: [],
+          },],
       },
     ],
   },
   studies: {
     display: true, // set to false to hide this section
-    title: "Studies",
+    title: "Formação",
     institutions: [
       {
-        name: "University of Jakarta",
-        description: <>Studied software engineering.</>,
-      },
-      {
-        name: "Build the Future",
-        description: <>Studied online marketing and personal branding.</>,
+        name: "Instituto Federal de Goiás",
+        description: <>Bacharelado em Sistemas de Informação 01.2024 - 02.2027(previsão) .</>,
       },
     ],
   },
   technical: {
     display: true, // set to false to hide this section
-    title: "Technical skills",
+    title: "Habilidades técnicas",
     skills: [
       {
-        title: "Figma",
+        title: "Java",
         description: (
-          <>Able to prototype in Figma with Once UI with unnatural speed.</>
+          <>A linguagem Java é a linguagem que estudo desde que iniciei minhas atividades na programação, aplicando conhecimentos como: Lógica de Programação, Programação Orientada a Objetos, Arquiterura MVC, CRUD e Estrutura de Dados.</>
         ),
-        tags: [
-          {
-            name: "Figma",
-            icon: "figma",
-          },
-        ],
-        // optional: leave the array empty if you don't want to display images
-        images: [
-          {
-            src: "/images/projects/project-01/cover-02.jpg",
-            alt: "Project image",
-            width: 16,
-            height: 9,
-          },
-          {
-            src: "/images/projects/project-01/cover-03.jpg",
-            alt: "Project image",
-            width: 16,
-            height: 9,
-          },
-        ],
       },
       {
-        title: "Next.js",
+        title: "Spring Boot",
         description: (
-          <>Building next gen apps with Next.js + Once UI + Supabase.</>
+          <>Principal Framework que utilizo para integrar minhas aplicações em Java, aplicando conhecimentos de: Conexão com Banco de Dados, API RESTful, Segurança da Informação e Arquitetura em Camadas.</>
         ),
-        tags: [
-          {
-            name: "JavaScript",
-            icon: "javascript",
-          },
-          {
-            name: "Next.js",
-            icon: "nextjs",
-          },
-          {
-            name: "Supabase",
-            icon: "supabase",
-          },
-        ],
-        // optional: leave the array empty if you don't want to display images
-        images: [
-          {
-            src: "/images/projects/project-01/cover-04.jpg",
-            alt: "Project image",
-            width: 16,
-            height: 9,
-          },
-        ],
       },  
     ],
   },
@@ -249,8 +178,8 @@ const work: Work = {
 const gallery: Gallery = {
   path: "/gallery",
   label: "Gallery",
-  title: `Photo gallery – ${person.name}`,
-  description: `A photo collection by ${person.name}`,
+  title: `Galeria – ${person.name}`,
+  description: `Coleções de fotos de ${person.name}`,
   // Images by https://lorant.one
   // These are placeholder images, replace with your own
   images: [
