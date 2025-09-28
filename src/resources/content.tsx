@@ -41,7 +41,7 @@ const social: Social = [
 const home: Home = {
   path: "/",
   image: "/images/og/home.jpg",
-  label: "Home",
+  label: "Casa",
   title: `${person.name}' Portfolio`,
   description: `Site do meu portifolio ${person.role}`,
   headline: <>Codificando soluções, e construindo o futuro.</>,
@@ -67,7 +67,7 @@ const home: Home = {
 
 const about: About = {
   path: "/about",
-  label: "About",
+  label: "Sobre",
   title: `Sobre – ${person.name}`,
   description: `Meet ${person.name}, ${person.role} from ${person.location}`,
   tableOfContent: {
@@ -168,7 +168,7 @@ const blog: Blog = {
 
 const work: Work = {
   path: "/work",
-  label: "Work",
+  label: "Projetos Práticos",
   title: `Projects – ${person.name}`,
   description: `Design and dev projects by ${person.name}`,
   // Create new project pages by adding a new .mdx file to app/blog/posts
