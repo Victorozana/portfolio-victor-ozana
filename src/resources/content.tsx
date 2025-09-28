@@ -4,7 +4,7 @@ import { Line, Logo, Row, Text } from "@once-ui-system/core";
 const person: Person = {
   firstName: "Victor",
   lastName: "Ozana",
-  name: `Victor`,
+  name: `Victor Ozana`,
   role: "Desenvolvedor de Software",
   avatar: "/images/avatar.jpg",
   email: "victor.ozprofissional@gmail.com",
@@ -14,7 +14,7 @@ const person: Person = {
 
 const newsletter: Newsletter = {
   display: true,
-  title: <>Fale comigo! {person.firstName}'s Newsletter</>,
+  title: <>Fale comigo!</>,
   description: <>Deseja falar comigo? Deixe o seu email aqui e entrarei em contato!</>,
 };
 
@@ -42,8 +42,8 @@ const home: Home = {
   path: "/",
   image: "/images/og/home.jpg",
   label: "Home",
-  title: `${person.name}'s Portfolio`,
-  description: `Portfolio website showcasing my work as a ${person.role}`,
+  title: `${person.name}' Portfolio`,
+  description: `Site do meu portifolio ${person.role}`,
   headline: <>Codificando soluções, e construindo o futuro.</>,
   featured: {
     display: true,
@@ -83,7 +83,7 @@ const about: About = {
   },
   intro: {
     display: true,
-    title: "Introduction",
+    title: "Introdução",
     description: (
       <>
         Victor é um desenvolvedor de software 
