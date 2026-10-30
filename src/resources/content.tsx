@@ -4,23 +4,21 @@ import { Line, Logo, Row, Text } from "@once-ui-system/core";
 const person: Person = {
   firstName: "Victor",
   lastName: "Ozana",
-  name: `Victor Ozana`,
+  name: "Victor Ozana",
   role: "Desenvolvedor de Software",
   avatar: "/images/avatar.jpg",
   email: "victor.ozprofissional@gmail.com",
-  location: "America/Sao_Paulo", // Expecting the IANA time zone identifier, e.g., 'Europe/Vienna'
-  languages: ["Português", "Inglês"], // optional: Leave the array empty if you don't want to display languages
+  location: "America/Sao_Paulo", // Fuso IANA
+  languages: ["Português", "Inglês (Intermediário)"],
 };
 
 const newsletter: Newsletter = {
   display: true,
   title: <>Fale comigo!</>,
-  description: <>Deseja falar comigo? Deixe o seu email aqui e entrarei em contato!</>,
+  description: <>Deseja conversar sobre oportunidades ou trocar uma ideia? Deixe o seu e-mail aqui e entrarei em contato!</>,
 };
 
 const social: Social = [
-  // Links are automatically displayed.
-  // Import new icons in /once-ui/icons.ts
   {
     name: "GitHub",
     icon: "github",
@@ -32,6 +30,11 @@ const social: Social = [
     link: "https://www.linkedin.com/in/victorozana/",
   },
   {
+    name: "WhatsApp",
+    icon: "whatsapp",
+    link: "https://wa.me/5561998492225",
+  },
+  {
     name: "Email",
     icon: "email",
     link: `mailto:${person.email}`,
@@ -41,10 +44,10 @@ const social: Social = [
 const home: Home = {
   path: "/",
   image: "/images/og/home.jpg",
-  label: "Casa",
-  title: `${person.name}' Portfolio`,
-  description: `Site do meu portifolio ${person.role}`,
-  headline: <>Codificando soluções, e construindo o futuro.</>,
+  label: "Início",
+  title: `${person.name} — Portfólio`,
+  description: `Portfólio de ${person.name}, ${person.role}`,
+  headline: <>Construindo software eficiente, escalável e inteligente.</>,
   featured: {
     display: true,
     title: (
@@ -52,15 +55,15 @@ const home: Home = {
         <strong className="ml-4">Projetos</strong>{" "}
         <Line background="brand-alpha-strong" vert height="20" />
         <Text marginRight="4" onBackground="brand-medium">
-          Clique aqui!
+          Ver projetos
         </Text>
       </Row>
     ),
-    href: "/work/building-once-ui-a-customizable-design-system",
+    href: "/work",
   },
   subline: (
     <>
-      Olá, sou Victor Ozana. Meu trabalho é transformar ideias em código e construir aplicações robustas e fáceis de usar. Explore alguns dos meus projetos!
+      Olá, sou Victor Ozana. Desenvolvedor de Software com experiência em C#/.NET, Node.js, Java e Next.js, além de pesquisador em Inteligência Artificial aplicada pelo IFG. Foco em arquiteturas sólidas, APIs de alta performance e código limpo.
     </>
   ),
 };
@@ -69,7 +72,7 @@ const about: About = {
   path: "/about",
   label: "Sobre",
   title: `Sobre – ${person.name}`,
-  description: `Meet ${person.name}, ${person.role} from ${person.location}`,
+  description: `Conheça ${person.name}, ${person.role}`,
   tableOfContent: {
     display: true,
     subItems: false,
@@ -79,80 +82,117 @@ const about: About = {
   },
   calendar: {
     display: true,
-    link: "https://cal.com",
+    link: "https://wa.me/5561998492225",
   },
   intro: {
     display: true,
     title: "Introdução",
     description: (
       <>
-        Victor é um desenvolvedor de software 
-        colaborativo e proativo, focado em criar 
-        soluções com arquitetura sólida e desempenho 
-        otimizado que garantem uma experiência de usuário 
-        excepcional.
+        Sou Desenvolvedor de Software e graduando em Sistemas de Informação no Instituto Federal de Goiás (IFG). Tenho experiência prática em desenvolvimento Full Stack (C#/.NET, Node.js, Next.js e ecossistema Java/Quarkus), modernização de plataformas, otimização de consultas em bancos de dados SQL Server/PostgreSQL e implementação de APIs RESTful resilientes com testes automatizados (xUnit, JUnit).
+        <br /><br />
+        Atualmente atuo como pesquisador acadêmico em Inteligência Artificial pelo IFG, desenvolvendo soluções aplicadas de Processamento de Linguagem Natural (NLP), reconhecimento de voz e modelos de Deep Learning com Python e Google AI Studio.
       </>
     ),
   },
   work: {
-    display: true, // set to false to hide this section
-    title: "Projetos práticos",
+    display: true,
+    title: "Experiência profissional",
     experiences: [
       {
-        company: "Iniciação Científica",
-        timeframe: "2025-presente",
-        role: "Python, Scikit-learn, TensorFlow, Keras",
+        company: "Instituto Federal de Goiás (IFG)",
+        timeframe: "08/2025 — Atual",
+        role: "Pesquisador em Inteligência Artificial (Iniciação Científica)",
         achievements: [
           <>
-           Feira Digital: Processamento de Linguagem Natural para Alavancar a Agricultura Familiar. É uma API que integra o Processamento de Linguagem Natural para entender a linguagem natural de agricultores familiar.
+            Desenvolveu e entregou MVP funcional de chatbot de assistência técnica voltado à agricultura familiar.
+          </>,
+          <>
+            Implementou pipelines de Processamento de Linguagem Natural (NLP) e reconhecimento de voz para interação com usuários.
+          </>,
+          <>
+            Construiu e treinou modelos de Deep Learning em Python utilizando Google AI Studio.
           </>,
         ],
         images: [],
       },
       {
-        company: "Memory Game",
-        timeframe: "2025",
-        role: "Java, JavaFX, CRUD, Git, Arquitetura MVC",
+        company: "Todos Empreendimentos LTDA",
+        timeframe: "02/2026 — 08/2026",
+        role: "Estagiário em Desenvolvimento de Software",
         achievements: [
           <>
-             Este projeto foi feito para as aulas na faculdade, porém ele inclui interface gráfica e é totalmente funcional, ou seja jogavél. Ele é capaz de incluir nomes e salva-lós, além de tratar problemas de concorrência.
+            Reduziu em 80% o tempo de resposta em operações críticas por meio da otimização de consultas SQL Server e estratégias de cache.
+          </>,
+          <>
+            Desenvolveu e manteve soluções Full Stack em C#/.NET e Node.js para fluxos de campanhas, com testes unitários em xUnit.
+          </>,
+          <>
+            Contribuiu para a modernização da plataforma desenvolvendo novas APIs em .NET e sustentando sistemas em WebForms (arquitetura 3-Tier/3MS).
           </>,
         ],
-        images: [{
-            src: "/images/projects/project-01/cover-01.jpg",
-            alt: "Once UI Project",
-            width: 16,
-            height: 9,
-          },],
+        images: [],
       },
     ],
   },
   studies: {
-    display: true, // set to false to hide this section
-    title: "Formação",
+    display: true,
+    title: "Formação acadêmica & Cursos",
     institutions: [
       {
-        name: "Instituto Federal de Goiás",
-        description: <>Bacharelado em Sistemas de Informação 01.2024 - 02.2027(previsão) .</>,
+        name: "Instituto Federal de Goiás (IFG)",
+        description: <>Bacharelado em Sistemas de Informação • 1º semestre de 2024 – 2º semestre de 2027 (Previsão).</>,
+      },
+      {
+        name: "Workshop em IA – O Novo Programador (2026)",
+        description: <>Capacitação voltada a ferramentas, agentes e fluxos de produtividade com Inteligência Artificial no desenvolvimento de software.</>,
+      },
+      {
+        name: "FLISoL (Festival Latino-Americano de Instalação de Software Livre) – IFG (2026)",
+        description: <>Participação em palestras e workshops focados em software livre, desenvolvimento comunitário e infraestrutura.</>,
       },
     ],
   },
   technical: {
-    display: true, // set to false to hide this section
+    display: true,
     title: "Habilidades técnicas",
     skills: [
       {
-        title: "Java",
+        title: "C# & .NET",
         description: (
-          <>A linguagem Java é a linguagem que estudo desde que iniciei minhas atividades na programação, aplicando conhecimentos como: Lógica de Programação, Programação Orientada a Objetos, Arquiterura MVC, CRUD e Estrutura de Dados.</>
+          <>Desenvolvimento de APIs RESTful robustas, testes com xUnit, arquitetura em camadas e integração com ecossistema Microsoft.</>
         ),
       },
       {
-        title: "Spring Boot",
+        title: "Java & Quarkus / Spring Boot",
         description: (
-          <>Principal Framework que utilizo para integrar minhas aplicações em Java, aplicando conhecimentos de: Conexão com Banco de Dados, API RESTful, Segurança da Informação e Arquitetura em Camadas.</>
+          <>Desenvolvimento backend orientado a objetos, arquitetura MVC, testes unitários com JUnit e criação de serviços REST.</>
         ),
-      },  
+      },
+      {
+        title: "Node.js, React & Next.js",
+        description: (
+          <>Construção de aplicações web modernas, interfaces reativas com TypeScript/JavaScript, renderização do lado do servidor e integração de APIs.</>
+        ),
+      },
+      {
+        title: "Inteligência Artificial & Python",
+        description: (
+          <>Processamento de Linguagem Natural (NLP), modelos de Deep Learning, reconhecimento de voz e uso do Google AI Studio para aplicações inteligentes.</>
+        ),
+      },
+      {
+        title: "Bancos de Dados & Performance",
+        description: (
+          <>SQL Server e PostgreSQL: modelagem relacional, otimização e tuning de consultas com reduções expressivas de latência e implementação de cache.</>
+        ),
+      },
+      {
+        title: "DevOps, Ferramentas & Boas Práticas",
+        description: (
+          <>Git, GitHub, Azure DevOps, pipelines de CI/CD, Scrum, Clean Code e princípios SOLID.</>
+        ),
+      },
     ],
   },
 };
@@ -160,70 +200,23 @@ const about: About = {
 const blog: Blog = {
   path: "/blog",
   label: "Blog",
-  title: "Writing about design and tech...",
-  description: `Read what ${person.name} has been up to recently`,
-  // Create new blog posts by adding a new .mdx file to app/blog/posts
-  // All posts will be listed on the /blog route
+  title: "Artigos & Aprendizados",
+  description: `Textos e reflexões de ${person.name} sobre desenvolvimento e tecnologia`,
 };
 
 const work: Work = {
   path: "/work",
-  label: "Projetos Práticos",
-  title: `Projects – ${person.name}`,
-  description: `Design and dev projects by ${person.name}`,
-  // Create new project pages by adding a new .mdx file to app/blog/posts
-  // All projects will be listed on the /home and /work routes
+  label: "Projetos",
+  title: `Projetos – ${person.name}`,
+  description: `Projetos práticos e soluções desenvolvidas por ${person.name}`,
 };
 
 const gallery: Gallery = {
   path: "/gallery",
-  label: "Gallery",
+  label: "Galeria",
   title: `Galeria – ${person.name}`,
-  description: `Coleções de fotos de ${person.name}`,
-  // Images by https://lorant.one
-  // These are placeholder images, replace with your own
-  images: [
-    {
-      src: "/images/gallery/horizontal-1.jpg",
-      alt: "image",
-      orientation: "horizontal",
-    },
-    {
-      src: "/images/gallery/vertical-4.jpg",
-      alt: "image",
-      orientation: "vertical",
-    },
-    {
-      src: "/images/gallery/horizontal-3.jpg",
-      alt: "image",
-      orientation: "horizontal",
-    },
-    {
-      src: "/images/gallery/vertical-1.jpg",
-      alt: "image",
-      orientation: "vertical",
-    },
-    {
-      src: "/images/gallery/vertical-2.jpg",
-      alt: "image",
-      orientation: "vertical",
-    },
-    {
-      src: "/images/gallery/horizontal-2.jpg",
-      alt: "image",
-      orientation: "horizontal",
-    },
-    {
-      src: "/images/gallery/horizontal-4.jpg",
-      alt: "image",
-      orientation: "horizontal",
-    },
-    {
-      src: "/images/gallery/vertical-3.jpg",
-      alt: "image",
-      orientation: "vertical",
-    },
-  ],
+  description: `Registros de ${person.name}`,
+  images: [],
 };
 
 export { person, social, newsletter, home, about, blog, work, gallery };
