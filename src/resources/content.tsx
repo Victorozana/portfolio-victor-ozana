@@ -15,7 +15,7 @@ const person: Person = {
 const newsletter: Newsletter = {
   display: true,
   title: <>Fale comigo!</>,
-  description: <>Deseja conversar sobre oportunidades ou trocar uma ideia? Deixe o seu e-mail aqui e entrarei em contato!</>,
+  description: <>Deseja conversar sobre oportunidades, projetos ou trocar uma ideia? Escolha um canal abaixo e entre em contato direto comigo!</>,
 };
 
 const social: Social = [
