@@ -91,7 +91,7 @@ const about: About = {
       <>
         Sou Desenvolvedor de Software e graduando em Sistemas de Informação no Instituto Federal de Goiás (IFG). Tenho experiência prática em desenvolvimento Full Stack (C#/.NET, Node.js, Next.js e ecossistema Java/Quarkus), modernização de plataformas, otimização de consultas em bancos de dados SQL Server/PostgreSQL e implementação de APIs RESTful resilientes com testes automatizados (xUnit, JUnit).
         <br /><br />
-        Atualmente atuo como pesquisador acadêmico em Inteligência Artificial pelo IFG, desenvolvendo soluções aplicadas de Processamento de Linguagem Natural (NLP), reconhecimento de voz e modelos de Deep Learning com Python e Google AI Studio.
+        Atualmente atuo como pesquisador acadêmico em Inteligência Artificial pelo IFG, desenvolvendo soluções aplicadas de Processamento de Linguagem Natural (NLP), reconhecimento de voz, modelos de Deep Learning com Python e Google AI Studio, além de estudos em Aprendizado Federado (Federated Learning) e execução local do modelo RuFus voltado à pecuária leiteira.
       </>
     ),
   },
@@ -105,13 +105,13 @@ const about: About = {
         role: "Pesquisador em Inteligência Artificial (Iniciação Científica)",
         achievements: [
           <>
-            Desenvolveu e entregou MVP funcional de chatbot de assistência técnica voltado à agricultura familiar.
+            Desenvolveu e entregou MVP funcional de chatbot comercial inteligente (Chatbot Feira Digital) voltado à agricultura familiar via Telegram e Google Gemini.
           </>,
           <>
-            Implementou pipelines de Processamento de Linguagem Natural (NLP) e reconhecimento de voz para interação com usuários.
+            Implementou pipelines multimodais de Processamento de Linguagem Natural (NLP) e áudio nativo com extração estruturada por JSON Schema e memória conversacional incremental.
           </>,
           <>
-            Construiu e treinou modelos de Deep Learning em Python utilizando Google AI Studio.
+            Conduz análises exploratórias de dados agropecuários, estudos em Aprendizado Federado (Federated Learning) e execução local do modelo de IA RuFus aplicado a fazendas leiteiras.
           </>,
         ],
         images: [],
@@ -178,7 +178,7 @@ const about: About = {
       {
         title: "Inteligência Artificial & Python",
         description: (
-          <>Processamento de Linguagem Natural (NLP), modelos de Deep Learning, reconhecimento de voz e uso do Google AI Studio para aplicações inteligentes.</>
+          <>Processamento de Linguagem Natural (NLP), modelos de Deep Learning, Aprendizado Federado (Federated Learning), execução local de modelos (RuFus), reconhecimento de voz e uso do Google AI Studio / Gemini API.</>
         ),
       },
       {

@@ -1,0 +1,50 @@
+---
+title: "Nexus Local — Gerenciamento de Negócios Locais Inteligente"
+publishedAt: "2026-10-15"
+summary: "Plataforma SaaS multi-tenant Full Stack em C# / .NET 10, PostgreSQL e Next.js 16 para gestão operacional, agendamentos, orçamentos, ordens de serviço, controle financeiro e permissões de equipe (RBAC)."
+images:
+  - "/images/projects/nexus-local/dashboard.png"
+  - "/images/projects/nexus-local/login.png"
+team:
+  - name: "Victor Ozana"
+    role: "Desenvolvedor de Software"
+    avatar: "/images/avatar.jpg"
+    linkedIn: "https://www.linkedin.com/in/victorozana/"
+link: "https://github.com/Victorozana/saas-pequenos-negocios-backend"
+---
+
+## Visão Geral
+
+Pequenos negócios e prestadores de serviços locais frequentemente operam no improviso, dividindo sua rotina entre planilhas desconectadas, mensagens soltas e controles manuais de caixa e agenda. O **Nexus Local (Nexo Local)** foi projetado e desenvolvido como uma plataforma **SaaS multi-tenant** completa para centralizar toda a operação comercial e financeira de pequenos negócios em um único ambiente seguro e escalável.
+
+A solução é dividida em dois repositórios desacoplados e sincronizados por contrato **OpenAPI 3.0**:
+- **Backend (.NET 10 / C#):** [github.com/Victorozana/saas-pequenos-negocios-backend](https://github.com/Victorozana/saas-pequenos-negocios-backend)
+- **Frontend (Next.js 16 / React 19):** [github.com/Victorozana/saas-pequenos-negocios-frontend](https://github.com/Victorozana/saas-pequenos-negocios-frontend)
+
+## Arquitetura e Decisões de Engenharia
+
+O backend foi construído em **ASP.NET Core (.NET 10)** seguindo uma arquitetura em camadas estrita e orientada ao domínio:
+- **HTTP / Features (`Agendamento.Api/Features`):** Endpoints RESTful versionados (`/api/v1/*`) e documentados via OpenAPI 3.0.
+- **Application:** Orquestração de casos de uso, validação de contratos e isolamento do contexto da empresa ativa (*Tenant*).
+- **Domain:** Entidades ricas e invariantes de negócio protegidas (ex.: proteção contra duplicidade de títulos financeiros e preservação obrigatória do último `owner_admin` ativo).
+- **Infrastructure:** Persistência com **Entity Framework Core** e **PostgreSQL** em produção (com suporte a banco em memória para desenvolvimento rápido e bancos temporários isolados para testes de integração).
+
+No frontend, a aplicação utiliza **Next.js 16**, **React 19**, **TypeScript**, **Tailwind CSS** e **Shadcn UI**, consumindo clientes e tipos gerados automaticamente a partir da especificação OpenAPI do backend (`schema.d.ts`), eliminando divergências entre cliente e servidor.
+
+## Principais Funcionalidades
+
+- **Isolamento Multi-Tenant e RBAC Granular:** Todas as operações autenticadas respeitam o contexto do *tenant* ativo. Controle de acesso baseado em papéis e permissões (`financial.read`, `financial.write`, `owner_admin`), com revogação imediata de sessão por *tenant* ao desativar membros da equipe.
+- **Autenticação Segura via Cookies `HttpOnly`:** Tokens JWT gerenciados no lado do servidor Next.js em cookies `HttpOnly`, impedindo a exposição de credenciais a scripts no navegador (proteção contra XSS).
+- **Fluxo Comercial Completo:** Gestão ponta a ponta de clientes, catálogo de serviços, emissão e aprovação de orçamentos, ordens de serviço (OS) e agenda operacional.
+- **Motor Financeiro Idempotente:** A aprovação de um orçamento gera automaticamente os títulos a receber (entrada e saldo residual) de forma idempotente — aprovações repetidas nunca duplicam lançamentos no caixa.
+- **Dashboard Executivo e Exportação:** Consolidação em tempo real de métricas de faturamento (Recebido, A Receber, OS Pendentes e Taxa de Conversão de Orçamentos) com exportação para CSV.
+
+## Tecnologias Utilizadas
+
+- **Backend:** C#, ASP.NET Core (.NET 10), Entity Framework Core, PostgreSQL, Autenticação Bearer JWT, OpenAPI 3.0 / Swagger.
+- **Frontend:** Next.js 16, React 19, TypeScript, Tailwind CSS, Shadcn UI.
+- **Qualidade e Testes:** Suítes automatizadas no backend (Testes de Domínio, Integração HTTP com PostgreSQL isolado e Testes de Arquitetura/Contrato) e no frontend com **Vitest** e **Testing Library**.
+
+## Desafios Técnicos e Resultados
+
+Um dos principais desafios foi garantir que regras críticas de negócio — como a transição de orçamento para contas a receber e o gerenciamento de permissões de equipe com convites via *Outbox Pattern* — mantivessem consistência transacional e segurança entre múltiplos *tenants*. A adoção de **Testes de Arquitetura** automatizados e geração de tipos via OpenAPI garantiu que o contrato HTTP permanecesse como única fonte de verdade durante toda a evolução do produto.

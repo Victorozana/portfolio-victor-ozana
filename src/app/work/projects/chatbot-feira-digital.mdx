@@ -1,0 +1,50 @@
+---
+title: "Chatbot Feira Digital — Assistente Comercial Inteligente"
+publishedAt: "2026-09-20"
+summary: "Assistente multimodal de voz e Processamento de Linguagem Natural (NLP) integrado ao Google Gemini e Telegram para conectar agricultores familiares e consumidores sem depender de formulários complexos."
+images:
+  - "/images/projects/chatbot-feira-digital/cover-01.jpg"
+  - "/images/projects/chatbot-feira-digital/cover-02.jpg"
+team:
+  - name: "Victor Ozana"
+    role: "Pesquisador em IA & Desenvolvedor"
+    avatar: "/images/avatar.jpg"
+    linkedIn: "https://www.linkedin.com/in/victorozana/"
+link: "https://github.com/Victorozana/chatbot-feira-digital"
+---
+
+## Visão Geral
+
+Na agricultura familiar, muitos produtores rurais e consumidores locais enfrentam barreiras de usabilidade e letramento digital ao lidar com cadastros extensos, tabelas ou interfaces textuais complexas para comercializar suas safras.
+
+Desenvolvido no âmbito de **Iniciação Científica em Inteligência Artificial no Instituto Federal de Goiás (IFG)**, o **Chatbot Feira Digital** elimina essa fricção permitindo que produtores anunciem seus produtos e clientes realizem pedidos **enviando apenas mensagens de voz pelo Telegram**.
+
+- **Repositório Oficial:** [github.com/Victorozana/chatbot-feira-digital](https://github.com/Victorozana/chatbot-feira-digital)
+
+## Arquitetura da Solução
+
+A aplicação foi estruturada em Python (3.10+) com arquitetura em camadas desacopladas (`Bot Layer` → `Core Services` → `Domain Layer`), priorizando baixa latência, segurança de tipagem na extração de entidades e resiliência contra limites de cota da API de IA:
+
+1. **Camada de Entrada e Orquestração (`src/bot.py`):** Recebe os áudios nativos em formato OGG/Opus do Telegram, valida o tamanho do payload (limite de 10 MB) e aciona o controle de vazão antes do processamento.
+2. **Processamento Multimodal Estruturado (`src/services/gemini_service.py`):** Integra-se à **Interactions API** do SDK `google-genai` utilizando o modelo **Gemini 3.1 Flash Lite** com suporte nativo a áudio e validação rígida por **JSON Schema**, extraindo intenções comerciais, múltiplos produtos, quantidades, unidades de medida e modalidades de preço sem alucinações de formato.
+3. **Memória Conversacional Incremental (`src/domain/models.py`):** Conduz diálogos em múltiplos turnos por meio do algoritmo de fusão de estado (`mesclar_dados`). Caso o produtor informe o produto no primeiro áudio mas esqueça o preço ou a quantidade, o assistente identifica exatamente os campos pendentes e faz perguntas direcionadas até completar o anúncio.
+4. **Gerenciamento de Sessão e Resiliência (`src/services/`):**
+   - **State Manager Thread-Safe:** Armazena o contexto das conversas em memória com expiração automática configurável (**TTL de 30 minutos**) e política de despejo **LRU** para proteção de memória.
+   - **Rate Limiter (Sliding Window):** Controle de requisições por minuto e por usuário, aliado a tratamento automático de erro `429 (Resource Exhausted)` e retentativas com *backoff*.
+
+## Principais Funcionalidades
+
+- **Interação 100% por Voz:** Compreensão natural de sotaques regionais, pausas e expressões coloquiais típicas de feiras livres e produtores rurais.
+- **Extração de Múltiplos Itens em Único Áudio:** Capacidade de separar e precificar diversos produtos anunciados na mesma mensagem de voz (por unidade, lote ou valor a combinar).
+- **Formatação Comercial Automática em BRL:** Geração instantânea de resumos visuais claros e padronizados em Reais (`R$`) prontos para confirmação.
+- **Suíte de Testes Automatizados:** Testes unitários (`unittest`) cobrindo normalização de dados, fusão de turnos conversacionais e regras de concorrência.
+
+## Tecnologias Utilizadas
+
+- **Linguagem e Ecossistema:** Python 3.10+, `unittest`, tipagem estática e arquitetura modular.
+- **Inteligência Artificial & NLP:** Google GenAI SDK (`Interactions API`), modelo multimodal **Gemini 3.1 Flash Lite**, Engenharia de Prompt com **Strict JSON Schema**.
+- **Mensageria e Concorrência:** Telegram Bot API (`pyTelegramBotAPI`), gerenciamento de estado `thread-safe` com `RLock`, controle de janelas deslizantes (*Sliding Window*) e cache com TTL/LRU.
+
+## Resultados e Impacto
+
+O MVP funcional validou na prática como modelos multimodais modernos, combinados a uma engenharia de software rigorosa (validação por schema, máquina de estados incremental e controle de concorrência), conseguem transformar áudios informais em dados estruturados de negócio com alta precisão, promovendo inclusão digital real para a agricultura familiar.
