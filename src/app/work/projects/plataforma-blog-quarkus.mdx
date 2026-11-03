@@ -1,0 +1,48 @@
+---
+title: "Plataforma de Publicações & Comunidade em Java e Quarkus"
+publishedAt: "2026-08-10"
+summary: "Plataforma web Full Stack desenvolvida em Java 17, Quarkus, Hibernate ORM with Panache e PostgreSQL, com autenticação JWT em cookies HttpOnly, criptografia BCrypt, interações sociais e auditoria administrativa."
+images:
+  - "/images/projects/blog-quarkus/home.png"
+  - "/images/projects/blog-quarkus/article.png"
+team:
+  - name: "Victor Ozana"
+    role: "Desenvolvedor de Software"
+    avatar: "/images/avatar.jpg"
+    linkedIn: "https://www.linkedin.com/in/victorozana/"
+link: "https://github.com/Victorozana/blog"
+---
+
+## Visão Geral
+
+O **Blog do Victor (`site-blog`)** é uma plataforma completa de publicação de artigos, engajamento de leitores e governança administrativa construída com **Java 17** e o framework **Quarkus**. O objetivo do projeto foi aplicar padrões sólidos de arquitetura em camadas no ecossistema Java moderno, aliando alta performance de inicialização, segurança web contra vulnerabilidades comuns (XSS e escalonamento de privilégio) e persistência relacional com **PostgreSQL**.
+
+- **Repositório Oficial:** [github.com/Victorozana/blog](https://github.com/Victorozana/blog)
+
+## Arquitetura da Solução
+
+A aplicação segue uma separação estrita de responsabilidades em camadas (`Controller` → `BO` → `DAO` → `Entity/DTO`), combinando renderização do lado do servidor (**Quarkus Qute**) com endpoints RESTful JSON (`quarkus-rest-jsonb`):
+
+- **Camada de Controle (`com.blog.controller`):** Controllers enxutos que separam claramente rotas de renderização de páginas HTML (`TemplateInstance`) e endpoints de dados JSON, acompanhados por tratamento centralizado de erros via `GlobalExceptionHandler`.
+- **Camada de Negócio (`com.blog.model.bo`):** *Business Objects* transacionais (`@Transactional`) responsáveis pela orquestração de regras de domínio, autenticação, armazenamento de imagens (`ImageStorageBO`) e registro de auditoria (`AuditLogBO`).
+- **Camada de Validação (`BusinessValidator`):** Validador de domínio desacoplado de infraestrutura que garante invariantes de negócio (idade mínima de 18 anos, limites de conteúdo de até 50 mil caracteres, validação de formato e tamanho de imagens de perfil até 5 MB e bloqueio de criação de contas `ADMIN` via formulário público).
+- **Camada de Persistência (`com.blog.model.dao`):** Repositórios baseados em **Hibernate ORM with Panache** (`PanacheRepository<T>`) conectados ao **PostgreSQL**.
+
+## Principais Funcionalidades
+
+- **Segurança Web com JWT `HttpOnly` e BCrypt:** Senhas criptografadas com **BCrypt (fator de custo 12)** e sessões autenticadas via **SmallRye JWT**. O token de acesso (`meu_token_jwt`) é armazenado exclusivamente em cookie `HttpOnly`, ficando inacessível via JavaScript no navegador e protegendo a aplicação contra roubo de sessão por XSS.
+- **Gestão de Artigos e Engajamento Social:** Criação, edição e gerenciamento de publicações categorizadas, com suporte a **Curtidas (`LikeBO`)** e **Comentários (`CommentBO`)** em tempo real.
+- **Perfis Públicos e Upload Seguro de Avatar:** Edição de biografia e upload de foto de perfil com validação rigorosa de extensão (`.jpg`, `.png`, `.webp`) e tamanho em bytes.
+- **Painel Administrativo e Trilha de Auditoria (`@RolesAllowed("ADMIN")`):** Área restrita (`/admin`) para listagem de usuários e visualização de logs de auditoria (`AuditLog`) que rastreiam eventos críticos (`USER_REGISTERED`, `LOGIN_SUCCESS`, `LOGIN_FAILED`, `LOGOUT`, `PROFILE_BIO_UPDATED`, `ACCOUNT_DELETED`).
+- **Exclusão de Conta com Integridade Referencial:** Remoção definitiva de conta pelo titular com limpeza transacional em cascata de curtidas, comentários e postagens associadas.
+
+## Tecnologias Utilizadas
+
+- **Backend:** Java 17, Quarkus 3.34 (`quarkus-rest`, `quarkus-arc`), Hibernate ORM with Panache, Jakarta Persistence (JPA 3.2), Lombok.
+- **Segurança:** SmallRye JWT (`quarkus-smallrye-jwt`), Jose4j e BCrypt (`at.favre.lib`).
+- **Frontend & SSR:** Quarkus Qute Templates, Quarkus Web Bundler, JavaScript (ES6+) e CSS3 modular.
+- **Banco de Dados & Testes:** PostgreSQL, JUnit 5 (`BusinessValidatorTest`) e Rest-Assured.
+
+## Resultados e Aprendizados
+
+O desenvolvimento consolidou na prática o uso do **Quarkus** para construir aplicações Java rápidas e modulares, demonstrando como implementar autenticação segura baseada em cookies `HttpOnly`, controle de acesso por papéis (`READER` vs. `ADMIN`), auditoria de eventos de segurança e testes unitários rápidos cobrindo todas as regras de validação de negócio.
